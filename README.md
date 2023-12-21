@@ -2,7 +2,7 @@
 <a href="https://www.dtapp.net/">Golang</a>
 </h1>
 
-📦 Golang 微客云
+📦 Golang 橙券开放平台
 
 [comment]: <> (go)
 [![godoc](https://pkg.go.dev/badge/go.dtapp.net/chengquan?status.svg)](https://pkg.go.dev/go.dtapp.net/chengquan)
