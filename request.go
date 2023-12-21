@@ -10,7 +10,7 @@ func (c *Client) request(ctx context.Context, url string, param gorequest.Params
 
 	// 公共参数
 	param.Set("timestamp", gotime.Current().TimestampWithMillisecond()) // 时间戳，以毫秒为单位。校验开发者与橙券的时间差，橙券允许开发者请求最大时间误差为3分钟 (3*60*1000)
-	param.Set("app_id", c.GetAppID())                                   // 商户账号，由橙券提供，如：13105356515
+	param.Set("app_id", c.config.appID)                                 // 商户账号，由橙券提供，如：13105356515
 
 	// 签名
 	param.Set("sign", c.sign(ctx, param))

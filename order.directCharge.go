@@ -47,7 +47,7 @@ func (c *Client) OrderDirectCharge(ctx context.Context, orderNo string, recharge
 	params.Set("recharge_number", rechargeNumber) // 充值账号
 	params.Set("product_id", productID)           // 充值产品编号
 	params.Set("amount", amount)                  // 充值数量（加油卡，视频业务默认为1，其它业务按照实际情况传递）。数量范围1-99999
-	params.Set("version", version)                // 版本号
+	params.Set("version", c.config.version)       // 版本号
 	// 请求
 	request, err := c.request(ctx, "/rder/directCharge", params, http.MethodPost)
 	if err != nil {

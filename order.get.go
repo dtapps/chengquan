@@ -37,8 +37,8 @@ func newOrderGetResult(result OrderGetResponse, body []byte, http gorequest.Resp
 func (c *Client) OrderGet(ctx context.Context, orderNo string, notMustParams ...gorequest.Params) (*OrderGetResult, error) {
 	// 参数
 	params := gorequest.NewParamsWith(notMustParams...)
-	params.Set("order_no", orderNo) // 商户提交的订单号，最长32位(商户保证其唯一性)
-	params.Set("version", version)  // 版本号
+	params.Set("order_no", orderNo)         // 商户提交的订单号，最长32位(商户保证其唯一性)
+	params.Set("version", c.config.version) // 版本号
 	// 请求
 	request, err := c.request(ctx, "/order/get", params, http.MethodPost)
 	if err != nil {

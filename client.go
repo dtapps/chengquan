@@ -17,11 +17,12 @@ type ClientConfig struct {
 // Client 实例
 type Client struct {
 	config struct {
-		apiURL string
-		appID  string
-		appKey string
-		aesKey string
-		aesIv  string
+		apiURL  string
+		appID   string
+		appKey  string
+		aesKey  string
+		aesIv   string
+		version string
 	}
 	gormLog struct {
 		status bool           // 状态
@@ -42,6 +43,7 @@ func NewClient(config *ClientConfig) (*Client, error) {
 	c.config.appKey = config.AppKey
 	c.config.aesKey = config.AesKey
 	c.config.aesIv = config.AesKey
+	c.config.version = "1.0.0"
 
 	return c, nil
 }
