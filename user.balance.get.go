@@ -2,7 +2,6 @@ package chengquan
 
 import (
 	"context"
-	"go.dtapp.net/gojson"
 	"go.dtapp.net/gorequest"
 	"net/http"
 )
@@ -29,15 +28,18 @@ func newUserBalanceGetResult(result UserBalanceGetResponse, body []byte, http go
 // UserBalanceGet 账号余额查询接口
 // https://chengquan.cn/basicData/queryBalance.html
 func (c *Client) UserBalanceGet(ctx context.Context, notMustParams ...gorequest.Params) (*UserBalanceGetResult, error) {
+
+	// OpenTelemetry链路追踪
+	ctx = c.TraceStartSpan(ctx, "user/balance/get")
+	defer c.TraceEndSpan()
+
 	// 参数
 	params := gorequest.NewParamsWith(notMustParams...)
-	// 请求
-	request, err := c.request(ctx, "/user/balance/get", params, http.MethodPost)
-	if err != nil {
-		return newUserBalanceGetResult(UserBalanceGetResponse{}, request.ResponseBody, request), err
-	}
-	// 定义
+
+	// 响应
 	var response UserBalanceGetResponse
-	err = gojson.Unmarshal(request.ResponseBody, &response)
+
+	// 请求
+	request, err := c.request(ctx, "user/balance/get", params, http.MethodPost, &response)
 	return newUserBalanceGetResult(response, request.ResponseBody, request), err
 }
