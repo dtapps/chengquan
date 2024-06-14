@@ -36,10 +36,8 @@ func (c *Client) UserBalanceGet(ctx context.Context, notMustParams ...gorequest.
 	// 参数
 	params := gorequest.NewParamsWith(notMustParams...)
 
-	// 响应
-	var response UserBalanceGetResponse
-
 	// 请求
+	var response UserBalanceGetResponse
 	request, err := c.request(ctx, "user/balance/get", params, http.MethodPost, &response)
 	return newUserBalanceGetResult(response, request.ResponseBody, request), err
 }

@@ -44,10 +44,8 @@ func (c *Client) OrderGet(ctx context.Context, orderNo string, notMustParams ...
 	params.Set("order_no", orderNo)         // 商户提交的订单号，最长32位(商户保证其唯一性)
 	params.Set("version", c.config.version) // 版本号
 
-	// 响应
-	var response OrderGetResponse
-
 	// 请求
+	var response OrderGetResponse
 	request, err := c.request(ctx, "order/get", params, http.MethodPost, &response)
 	return newOrderGetResult(response, request.ResponseBody, request), err
 }

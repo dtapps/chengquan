@@ -26,7 +26,7 @@ func (c *Client) sign(ctx context.Context, param gorequest.Params) string {
 			signStr += fmt.Sprintf("%s=%s&", key, gostring.GetString(param.Get(key)))
 		}
 	}
-	signStr += "key=" + c.config.appKey
+	signStr += "key=" + c.GetAppKey()
 
 	return c.createSign(signStr)
 }

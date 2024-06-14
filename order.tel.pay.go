@@ -48,10 +48,8 @@ func (c *Client) OrderTelPay(ctx context.Context, orderNo string, rechargeNumber
 	params.Set("recharge_number", rechargeNumber) // 充值手机号码
 	params.Set("price", price)                    // 充值面值(单位：分)
 
-	// 响应
-	var response OrderTelPayResponse
-
 	// 请求
+	var response OrderTelPayResponse
 	request, err := c.request(ctx, "order/tel/pay", params, http.MethodPost, &response)
 	return newOrderTelPayResult(response, request.ResponseBody, request), err
 }

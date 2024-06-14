@@ -33,8 +33,8 @@ type Client struct {
 
 // NewClient 创建实例化
 func NewClient(config *ClientConfig) (*Client, error) {
-
 	c := &Client{}
+
 	if config.ApiURL == "" {
 		return nil, errors.New("需要配置ApiURL")
 	}
